@@ -12,10 +12,10 @@ class ControlSurfaces(altimeter: ActorRef) extends Actor {
   import Altimeter._
 
   def receive = {
-    case StickBack(forward) => {
+    case StickBack(amount) => {
       altimeter ! RateChange(amount)
     }
-    case StickForward(forward) => {
+    case StickForward(amount) => {
       altimeter ! RateChange(-1 * amount)
     }
   }

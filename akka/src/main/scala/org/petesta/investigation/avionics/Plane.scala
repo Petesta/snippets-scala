@@ -11,11 +11,11 @@ class Plane extends Actor with ActorLogging {
   import Plane._
 
   val altimeter = context.actorOf(Props[Altimeter], "Altimeter")
-  val props = context.actorOf(Props(new ControlSurfaces(altimeter)), "ControlSurfaces") 
+  val controls = context.actorOf(Props(new ControlSurfaces(altimeter)), "ControlSurfaces") 
 
   def receive = {
     case GiveMeControl => {
-      long info("Plane giving control.")
+      log info("Plane giving control.")
       sender ! controls
     }
   }
